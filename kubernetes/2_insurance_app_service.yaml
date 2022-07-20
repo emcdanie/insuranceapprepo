@@ -10,7 +10,7 @@ spec:
   type: LoadBalancer # for expose as loadbalancer
   # type: NodePort # for expose as nodeport
   ports:
-  - port: 5000
+  - port: 8090
     targetPort: http
     # nodePort: 30163 #30000-32767 # uncomment if NodePort used
     protocol: TCP
