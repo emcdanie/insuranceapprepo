@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myinsuranceapprepo-latest
-  labels:https://github.com/emcdanie/insuranceapprepo
+  labels:
     app: myinsuranceapprepo
 spec:
   replicas: 5
@@ -20,3 +20,5 @@ spec:
         ports:
         - name: http
           containerPort: 5000
+
+# labels:https://github.com/emcdanie/insuranceapprepo
