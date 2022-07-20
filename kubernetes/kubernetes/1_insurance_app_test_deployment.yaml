@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myinsuranceapp-v1
-  labels:
-    app: myinsuranceapp-v1
+  name: myinsuranceapprepo-latest
+  labels:https://github.com/emcdanie/insuranceapprepo
+    app: myinsuranceapprepo
 spec:
   replicas: 5
   selector:
     matchLabels:
-      app: myinsuranceapp-v1
+      app: myinsuranceapprepo
   template:
     metadata:
       labels:
-        app: myinsuranceapp-v1
+        app: myinsuranceapprepo
     spec:
       containers:
-      - name: myinsuranceapp-v1-deployment
+      - name: myinsuranceapprepo-v1-deployment
         image: elletamc/app
         ports:
         - name: http
