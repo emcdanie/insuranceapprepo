@@ -15,8 +15,8 @@ spec:
         app: myinsuranceapprepo
     spec:
       containers:
-      - name: elletamc/app:latest
-        image: elletamc/app:lastest
+      - name: elletamc/app
+        image: elletamc/app:latest
         ports:
         - name: http
           containerPort: 5000
