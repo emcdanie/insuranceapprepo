@@ -44,3 +44,4 @@
   - python3 -m unittest discover -s tests/acceptance-ext -v
     - For this is necessary that the service be running
 
+this is a test
