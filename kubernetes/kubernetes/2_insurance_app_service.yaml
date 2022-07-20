@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: myinsuranceapprepo-latest
+  name: myinsuranceapp
   labels:
-    app: myinsuranceapprepo
+    app: app
 spec:
   selector:
-    app:myinsuranceapprepo
+    app: myinsuranceapp
   type: LoadBalancer # for expose as loadbalancer
   # type: NodePort # for expose as nodeport
   ports:
