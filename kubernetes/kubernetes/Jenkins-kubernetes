@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+
+    stages {
+         stage('Checkout') {
+            steps {
+                git branch: 'main',url: 'https://github.com/emcdanie/insuranceapprepo.git'
+            }
+        }  
+        stage('Exexuting kubectl') {
+            steps {
+                echo 'Exexuting kubectl'
+                withKubeConfig([credentialsId: 'k8-credentials']) {
+                    sh 'kubectl apply -f 1_insurance_app_test_deployment.yaml'
+                    sh 'kubectl apply -f 2_insurance_app_service.yaml'
+                }
+            }
+        }
+    }
+}
