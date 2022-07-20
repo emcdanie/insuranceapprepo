@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: myinsuranceapp-v1-deployment
-        image: elletamc/myinsuanceapp:latest
+        image: elletamc/app
         ports:
         - name: http
           containerPort: 5000
