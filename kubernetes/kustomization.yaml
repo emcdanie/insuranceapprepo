@@ -1,0 +1,3 @@
+resources:
+  - 1_insurance_app_test_deployment.yaml
+  - 2_insurance_app_service.yaml
