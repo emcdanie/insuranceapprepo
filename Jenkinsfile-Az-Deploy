@@ -30,7 +30,7 @@ pipeline {
         stage('Create image') {
             steps {
                 echo 'creating image...'    
-                sh 'docker build -t ipanema.azurecr.io/app:latest -f Dockerfile . .'
+                sh 'docker build -t ipanema.azurecr.io/app:latest -f Dockerfile .'
             }
         } 
         stage('Publish image') {
