@@ -36,14 +36,14 @@ pipeline {
         stage('Publish image') {
             steps {
                 echo 'pushing image..'              
-                withDockerRegistry([ credentialsId: "az-kube-credentials_1", url: "ipanema.azurecr.io" ]) {
+                withDockerRegistry([ credentialsId: "k8-credentials", url: "ipanema.azurecr.io" ]) {
                     sh 'docker push ipanema.azurecr.io/app:latest'
                 }
             }
         }
         stage('Apply Kubernetes ') {
             steps {
-                withKubeConfig([credentialsId: 'az-kube-credential_1']) {   
+                withKubeConfig([credentialsId: 'k8-credentials']) {   
                     sh 'kubectl apply -f kubernetes/3_insurance_app_test_deployment_az.yaml'
                     sh 'kubectl apply -f kubernetes/4_insurance_app_service_az.yaml'
                     sh 'kubectl port-forward service/app:latest 5000:5000 &'
