@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'docker',url: 'https://github.com/emcdanie/insuranceapprepo.git'
+                git branch: 'main',url: 'https://github.com/emcdanie/insuranceapprepo.git'
             }
         }        
         stage('Requirements') {
