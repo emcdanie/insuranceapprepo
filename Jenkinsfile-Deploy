@@ -1,0 +1,74 @@
+pipeline {
+    agent any
+    
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'docker',url: 'https://github.com/emcdanie/insuranceapprepo.git'
+            }
+        }        
+        stage('Requirements') {
+            steps {
+                echo 'Installing dependencies...'
+                sh 'pip3 install -r requirements.txt'
+                sh 'python3 project/init/init_db.py'
+            }
+        }
+        stage('Unit/Integration tests') {
+            steps {
+                echo 'Unit/Integration...'
+                sh 'python3 -m unittest discover -s tests/unit -v'
+            }
+        }        
+        stage('Acceptance tests') {
+            steps {
+                echo 'Acceptance...'
+                sh 'python3 -m unittest discover -s tests/acceptance-flask -v'
+            }
+        }     
+        stage('Create image') {
+            steps {
+                echo 'creating image...'    
+                sh 'docker build -t ipanema.azurecr.io/app:latest -f Dockerfile . .'
+            }
+        } 
+        stage('Publish image') {
+            steps {
+                echo 'pushing image..'              
+                withDockerRegistry([ credentialsId: "az-kube-credentials", url: "ipanema.azurecr.io" ]) {
+                    sh 'docker push ipanema.azurecr.io/app:latest'
+                }
+            }
+        }
+        stage('Apply Kubernetes ') {
+            steps {
+                withKubeConfig([credentialsId: 'az-kube-credential']) {   
+                    sh 'kubectl apply -f kubernetes/3_ins_app_deployment_az.yaml'
+                    sh 'kubectl apply -f kubernetes/4_ins_app_service_az.yaml'
+                    sh 'kubectl port-forward service/app:latest 5000:5000 &'
+                }
+            }
+        }
+        stage('External acceptance tests') {
+            steps{
+                echo 'External acceptance tests...'
+                sh 'python3 -m unittest discover -s tests/acceptance-request -v'
+            }
+        }
+    }
+    post {
+        always {
+            echo 'post do this always...'
+        }
+        success{
+            echo 'post do this when success...'
+        }
+        failure {
+            echo 'post do this when failure...'
+        }
+        cleanup{
+            echo 'post do this when cleanup...'
+        }
+    }
+}
