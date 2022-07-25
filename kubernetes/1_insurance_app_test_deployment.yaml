@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: elletamc/app:latest
+        image: kubemazl/app:latest
         ports:
         - name: http
           containerPort: 5000
