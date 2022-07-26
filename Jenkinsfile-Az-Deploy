@@ -8,7 +8,7 @@ pipeline {
                 git branch: 'main',url: 'https://github.com/emcdanie/insuranceapprepo.git'
             }
         }        
-        stage('Requirements') {
+       /* stage('Requirements') {
             steps {
                 echo 'Installing dependencies...'
                 sh 'pip3 install -r requirements.txt'
@@ -40,7 +40,7 @@ pipeline {
                     sh 'docker push ipanema.azurecr.io/app:latest'
                 }
             }
-        }
+        }*/
         stage('Apply Kubernetes ') {
             steps {
                 withKubeConfig([credentialsId: 'k8-credentials', serverUrl:'https://amazed-grizzly-k8s-c5afd959.hcp.eastasia.azmk8s.io']) {   
