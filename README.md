@@ -6,7 +6,8 @@
     - pip3 uninstall -r requirements.txt
 
 ## Init database (before running the server)
-- python3 project/init/init_db.py
+- py project/init/init_db.py
+py -m unittest discover -s tests/acceptance-request/ -v
 
 ## Run the server 
 - python3 runserver.py

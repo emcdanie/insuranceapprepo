@@ -22,4 +22,5 @@ class TestApp(unittest.TestCase):
         self.assertLess(0, len(data))
         self.assertIn("address", data[0])
         self.assertIn("B Street 1", data[0]["address"])
+        
 
