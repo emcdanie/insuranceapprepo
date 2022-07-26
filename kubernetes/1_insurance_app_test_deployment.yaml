@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myinsuranceappdeployment
+  labels:
+    app: myinsuranceapp
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: myinsuranceapp
+  template:
+    metadata:
+      labels:
+        app: myinsuranceapp
+    spec:
+      containers:
+      - name: app
+        image: kubemazl/app:latest
+        ports:
+        - name: http
+          containerPort: 5000
