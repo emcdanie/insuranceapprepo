@@ -36,7 +36,7 @@ pipeline {
         stage('Publish image') {
             steps {
                 echo 'pushing image..'              
-                withDockerRegistry([ credentialsId: "k8-credentials", url: "ipanema.azurecr.io" ]) {
+                withDockerRegistry([ credentialsId: "k8-credentials", url: "http//:ipanema.azurecr.io" ]) {
                     sh 'docker push ipanema.azurecr.io/app:latest'
                 }
             }
