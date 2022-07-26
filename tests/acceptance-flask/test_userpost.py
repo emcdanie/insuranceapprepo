@@ -18,10 +18,10 @@ class TestApp(unittest.TestCase):
         test_data = {"address": "C Street 1",
                      "email": "jd@myinsuranceapp.com",
                      "fullname": "John Doe",
-                     "birthdate": "this is not a birthday02.10.2020",
+                     "birthdate": "02.10.2020",
                      "country": "Berlin",
                      "city": "Spain",
-                     "password": "you never put plain text passwords into an api",}
+                     "password": "poo",}
         response = self.client.post('/api/v1/users/',content_type='application/json',headers=self.headers, json=test_data)
         data=response.json
         print(f"post: {data}")
