@@ -46,13 +46,14 @@ class TestApp(unittest.TestCase):
         test_data = {"address": "C Street 1",
                      "fullname": "John Doe",
                      "birthdate": "02.10.2020",
+                     "email": "jh@gmail.com",
                      "country": "Berlin",
                      "city": "Spain",
                      "password": "poo",}
         response = self.client.post('/api/v1/users/',content_type='application/json',headers=self.headers, json=test_data)
         data=response.json
         print(f"post: {data}")
-        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.status_code, 200)
        
 
    
