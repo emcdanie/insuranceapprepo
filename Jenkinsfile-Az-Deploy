@@ -25,7 +25,6 @@ pipeline {
             steps {
                 echo 'Acceptance...'
                 sh 'python3 -m unittest discover -s tests/acceptance-flask -v'
-                sh 'python3 -m unittest discover -s tests/acceptance/test_userpost.py'
             }
         }     
         stage('Create image') {
