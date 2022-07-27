@@ -43,7 +43,7 @@ pipeline {
         }
         stage('Apply Kubernetes ') {
             steps {
-                withKubeConfig([credentialsId: 'k8-credentials', serverUrl:'https://amazed-grizzly-k8s-c5afd959.hcp.eastasia.azmk8s.io']) {   
+                withKubeConfig([credentialsId: 'k8-credentials', serverUrl:'https://adjusted-mayfly-k8s-a38d8036.hcp.eastasia.azmk8s.io']) {   
                     sh 'kubectl apply -f kubernetes/3_insurance_app_test_deployment_az.yaml'
                     sh 'kubectl apply -f kubernetes/4_insurance_app_service_az.yaml'
                     sh 'kubectl port-forward service/app:latest 5000:5000 &'
